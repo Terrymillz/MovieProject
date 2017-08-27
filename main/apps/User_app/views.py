@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
+
 from .models import User, Profile, Movie
+from ..movieApp.models import Watchlist
+
 from django.core.urlresolvers import reverse
 """
 things that need to be added?
@@ -11,22 +14,29 @@ things that need to be added?
 # =================================================================
 # template renders
 # =================================================================
-def login_page(request): #renders the login page template
+def login_page(request): #<--renders the login page template
     return render(request, 'User_app/login_page.html')
 
-def register_page(request): #renders the register page template
+def register_page(request): #<--renders the register page template
     return render(request, 'User_app/register_page.html')
 
-def profile(request):
+
+
+
+def profile(request): # <-- this renders the profile page
     if 'user' not in request.session:
         return redirect('/login')
-    username = request.session['name']
-    profile = Profile.objects.filter(user_id = User.objects.get(id = request.session['user']))
-    context = {
+
+    user = User.objects.get(id=request.session['user'])
+    profile = Profile.objects.filter(user_id = User.objects.get(id = request.session['user'])) # this gets the profile information ascociated with User
+
+    context = { # <-- information passed to template
     'profile' : profile,
-    'username' : username
+    'user' : user,
+    'watchlist': Watchlist.objects.filter(user=request.session["user"])
     }
-    print request.session['user']
+    for movie in context['watchlist']:
+        print movie.movie_title
     return render(request, "User_app/profile.html", context)
 
 # =================================================================

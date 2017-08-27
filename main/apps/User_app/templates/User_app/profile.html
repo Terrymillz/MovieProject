@@ -8,7 +8,7 @@
     <a href="/">Home</a>
     <a href="/logout">Logout</a>
     <div class="general">
-      <h1>{{ username }}'s Profile</h1>
+      <h1>{{ user.first_name }}'s Profile</h1>
       <img src="" alt="">
       {% if profile %}
       {% for item in profile %}
@@ -34,8 +34,10 @@
 
     </div>
     <div class="movieList">
-      <h2>My Movies</h2>
-
+      <h2>My Watchlist</h2>
+      {% for movie in watchlist %}
+      <p>{{ movie.movie_title }}</p>
+      {%endfor%}
     </div>
 
 

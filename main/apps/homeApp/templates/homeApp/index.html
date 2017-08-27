@@ -12,7 +12,13 @@
     <a href="/profile">My Profile</a>
     <a href="/logout">Logout</a>
 
+    <form class="" action="index.html" method="post">
+      <input type="text" name="search">
+      <input type="submit" name="search" value="Search">
+    </form>
+
     <p>{{ status }}</p>
+    <h2>Welcome {{ name }}</h2>
     <h2>Discover Movies</h2>
     <!-- <form class="testing" action="/testing" method="post">
       {% csrf_token %}

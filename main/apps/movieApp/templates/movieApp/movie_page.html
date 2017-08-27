@@ -11,20 +11,24 @@
       <a href="/">Home</a>
     </div>
 
-    <h1>This will be the page that has to do with individual movies</h1>
-      <p>{{ movie.title }}</p>
-      <img style="width:200px" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" >
-    <h3>Summary</h3>
-      <p>{{ movie.overview }}</p>
+    <h1>{{ movie.title }}</h1>
 
-    <h3>cast</h3>
-    <div class="cast-wrapper">
-      {% for person in cast.cast|slice:":10" %}
-      <a href="/people/{{person.id}}">
-        <img style="width:50px" src="https://image.tmdb.org/t/p/w500{{person.profile_path}}">
-      </a>
-      <p>{{person.name}}</p>
-      {% endfor %}
+      <img style="width:200px" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" >
+      <form class="add_to_watchlist" action="/movie/add/watchlist/{{movie.id}}" method="post">
+        {% csrf_token %}
+        <input type="submit" name="add_to_watchlist" value="Add to Watchlist">
+      </form>
+      <h3>Summary</h3>
+        <p>{{ movie.overview }}</p>
+
+      <h3>cast</h3>
+      <div class="cast-wrapper">
+        {% for person in cast.cast|slice:":10" %}
+        <a href="/people/{{person.id}}">
+          <img style="width:50px" src="https://image.tmdb.org/t/p/w500{{person.profile_path}}">
+        </a>
+        <p>{{person.name}}</p>
+        {% endfor %}
 
 
     </div>

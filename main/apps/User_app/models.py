@@ -1,11 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
 
-# ****************************************************************
-# ****************************************************************
-# BCRIPT NEEDS TO BE ADDED BEFORE DEPLOYMENT
-# ****************************************************************
-# ****************************************************************
 
 # Create your models here.
 # =================================================================
@@ -40,6 +35,12 @@ class UserManager(models.Manager):
         # Password validation
         if len(data['password']) < 1 :
             errors.append('The password cannot be blank')
+# ****************************************************************
+# ****************************************************************
+# BCRIPT NEEDS TO BE ADDED BEFORE DEPLOYMENT
+# ****************************************************************
+# ****************************************************************
+
 
 
         if len(errors) == 0: #if there are no errors in the validations
