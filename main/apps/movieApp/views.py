@@ -7,12 +7,27 @@ from ..User_app.models import User
 # Template renders
 # ===========================
 def movie_page(request, id): # this renders the selected individual movie page
+    if 'user' in request.session:
+        user = User.objects.get(id=request.session['user'])
+        watchlist = Watchlist.objects.filter(user__id=user.id)
+
+        for movie in watchlist: #<-- this is to check if movie is already in watchlist
+            if movie.api_Movie_code == id:
+                in_list == True
+            else:
+                in_list == False
+    else:
+        in_list = False
+
+
     movie = services.get_movie(id)
-    page_info = {
+    context = { #<-- info that goes to template
         'movie': movie['movie_info'],
-        'cast': movie['cast_info']
+        'cast': movie['cast_info'],
+        'in_list': in_list
+
     }
-    return render(request, 'movieApp/movie_page.html', page_info )
+    return render(request, 'movieApp/movie_page.html', context)
 
 def cast_page(request, id): # this render the info page for the individual actor
     person_info = services.get_person(id)

@@ -8,6 +8,9 @@ class WatchlistManager(models.Manager):
         user = User.objects.get(id=data['user_id'])
         movie = data['movie']
         print movie['poster_path']
+#=============================================================================
+        # might need to add function to make sure the same movie cannont be added twice
+#=============================================================================
         Watchlist.objects.create(
             api_Movie_code = movie['id'],
             movie_title = movie['title'],
