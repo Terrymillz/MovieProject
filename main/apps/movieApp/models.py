@@ -14,7 +14,7 @@ class WatchlistManager(models.Manager):
         Watchlist.objects.create(
             api_Movie_code = movie['id'],
             movie_title = movie['title'],
-            poster_path = movie['poster_path'],
+            poster_path = movie['poster_path'],``
             user = user
         )
         return
