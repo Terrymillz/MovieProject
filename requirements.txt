@@ -10,7 +10,7 @@ idna==2.6
 olefile==0.44
 packaging==16.8
 pilkit==2.0
-Pillow==4.2.1
+Pillow==6.2.0
 pycparser==2.17
 pyparsing==2.2.0
 requests==2.18.4
